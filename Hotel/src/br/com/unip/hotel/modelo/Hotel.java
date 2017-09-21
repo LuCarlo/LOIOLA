@@ -2,11 +2,15 @@ package br.com.unip.hotel.modelo;
 
 import java.util.Calendar;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Hotel {
 	private String nome;
 	private String tipoQuarto;
 	private double valorDiaria;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataEntrada;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataSaida;
 	private double valorTotal;
 	
@@ -22,11 +26,11 @@ public class Hotel {
 	public void setTipoQuarto(String tipoQuarto) {
 		this.tipoQuarto = tipoQuarto;
 	}
-	public double getValorDiario() {
+	public double getValorDiaria() {
 		return valorDiaria;
 	}
-	public void setValorDiario(double valorDiario) {
-		this.valorDiaria = valorDiario;
+	public void setValorDiaria(double valorDiaria) {
+		this.valorDiaria = valorDiaria;
 	}
 	public Calendar getDataEntrada() {
 		return dataEntrada;
@@ -46,6 +50,7 @@ public class Hotel {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
 	
 	
 }

@@ -24,9 +24,9 @@
 		<div>
 			<table border="1">
 				<tr>
-					<td>Data de Entrada: <tag:campoData id="dataEn" /> <br />
+					<td>Data de Entrada: <tag:campoData id="dataEntrada" /> <br />
 					</td>
-					<td>Data de Saída: <tag:campoData id="dataSai" /><br />
+					<td>Data de Saída: <tag:campoData id="dataSaida" /><br />
 					</td>
 				</tr>
 			</table>
@@ -36,8 +36,10 @@
 				<option value="3">Quarto Familia</option>
 				<option value="4">Quarto Múltiplo</option>
 
-			</select> <br /> <br /> <input type="submit" value="Pesquisar" />
+			</select> <br /> <br /> 
 		</div>
+		
+		<input type="submit" value="Pesquisar" />
 	</form>
 
 </body>

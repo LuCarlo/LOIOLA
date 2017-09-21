@@ -1,5 +1,7 @@
 package br.com.unip.hotel.controller;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,8 +18,11 @@ public class HotelController {
 	
 	@RequestMapping("selecionaHotel")
 	public String buscar(Hotel hotel){
-		System.out.println(hotel.getTipoQuarto());
+		String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataEntrada().getTime()); 
+		String dataFormatada1 = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataSaida().getTime());
+		System.out.println("hotel"+dataFormatada +" " + dataFormatada1);
 		return "hotel/resultado";
 	}
+	
 
 }
