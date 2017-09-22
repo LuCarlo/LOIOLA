@@ -22,6 +22,7 @@
 		</div>
 
 		<div>
+		<input type="hidden" name="valorDiaria" value="150" />
 			<table border="1">
 				<tr>
 					<td>Data de Entrada: <tag:campoData id="dataEntrada" /> <br />

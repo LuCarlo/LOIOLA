@@ -20,7 +20,8 @@ public class HotelController {
 	public String buscar(Hotel hotel){
 		String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataEntrada().getTime()); 
 		String dataFormatada1 = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataSaida().getTime());
-		System.out.println("hotel"+dataFormatada +" " + dataFormatada1);
+		
+		System.out.println("hotel "+dataFormatada +" " + dataFormatada1 +" "+hotel.getValorDiaria());
 		return "hotel/resultado";
 	}
 	
