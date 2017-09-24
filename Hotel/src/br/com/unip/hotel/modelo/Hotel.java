@@ -13,6 +13,7 @@ public class Hotel {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataSaida;
 	private double valorTotal;
+	private long qtdDias;
 	
 	public String getNome() {
 		return nome;
@@ -50,4 +51,12 @@ public class Hotel {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	public long getQtdDias() {
+		System.out.println("ok " +qtdDias);
+		return qtdDias;
+	}
+	public void setQtdDias(long qtdDias) {
+		this.qtdDias = qtdDias;
+	}
+	
 }

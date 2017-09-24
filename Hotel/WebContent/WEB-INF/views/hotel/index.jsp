@@ -16,13 +16,14 @@
 <title>HoteisUNIP.com</title>
 </head>
 <body>
-	<form method="post" action="selecionaHotel">
+	<form method="get" action="selecionaHotel">
 		<div style="text-align: center">
 			<h2>Busca de Hotel</h2>
 		</div>
 
 		<div>
 		<input type="hidden" name="valorDiaria" value="150" />
+		<input type="hidden" name="qtdDias" value="6"/>
 			<table border="1">
 				<tr>
 					<td>Data de Entrada: <tag:campoData id="dataEntrada" /> <br />
@@ -32,10 +33,10 @@
 				</tr>
 			</table>
 			<br />Tipo de quarto: <select name="tipoQuarto">
-				<option value="1">Quarto Individual</option>
-				<option value="2">Quarto Duplo</option>
-				<option value="3">Quarto Familia</option>
-				<option value="4">Quarto Múltiplo</option>
+				<option value="Quarto Individual">Quarto Individual</option>
+				<option value="Quarto Duplo">Quarto Duplo</option>
+				<option value="Quarto Familia">Quarto Familia</option>
+				<option value="Quarto Múltiplo">Quarto Múltiplo</option>
 
 			</select> <br /> <br /> 
 		</div>

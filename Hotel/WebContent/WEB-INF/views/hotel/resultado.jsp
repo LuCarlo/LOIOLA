@@ -6,10 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="tag"%>
 
-<jsp:useBean id="hotel" class="br.com.unip.hotel.modelo.Hotel"/>
+<jsp:useBean id="hotel" class="br.com.unip.hotel.modelo.Hotel" />
 
 <link href="css/jquery.css" rel="stylesheet" />
 <script src="js/jquery.js"></script>
@@ -19,8 +18,24 @@
 <body>
 
 
-<marquee> <tr>Data Entrada: ${param.dataEntrada}</tr> Data Saida: ${param.dataSaida }</marquee>
+	<form method="get" action="listaHotel">
 
+	<td>
+		<tr>Data Entrada: ${param.dataEntrada}
+		</tr>
+		<tr>Data Saida: ${param.dataSaida }
+		</tr>
+	</td>
 
+	<td>
+		<tr>${param.valorDiaria}
+		</tr>
+		<tr>
+		aaaaaa
+		<input type="text" value="${requestScope.qtdDias}" />
+		</tr>
+	</td>
+	</form>
+	
 </body>
 </html>
