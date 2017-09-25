@@ -6,8 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Hotel {
 	private String nome;
-	private String tipoQuarto;
-	private double valorDiaria;
+	private int tipoQuarto;
+	private double valorDiaria = 150;
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataEntrada;
 	@DateTimeFormat(pattern="dd/MM/yyyy")
@@ -21,10 +21,10 @@ public class Hotel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTipoQuarto() {
+	public int getTipoQuarto() {
 		return tipoQuarto;
 	}
-	public void setTipoQuarto(String tipoQuarto) {
+	public void setTipoQuarto(int tipoQuarto) {
 		this.tipoQuarto = tipoQuarto;
 	}
 	public double getValorDiaria() {
@@ -52,11 +52,14 @@ public class Hotel {
 		this.valorTotal = valorTotal;
 	}
 	public long getQtdDias() {
-		System.out.println("ok " +qtdDias);
 		return qtdDias;
 	}
 	public void setQtdDias(long qtdDias) {
+		if(qtdDias == 0){
+			qtdDias = 1;
+		}
 		this.qtdDias = qtdDias;
 	}
+		
 	
 }

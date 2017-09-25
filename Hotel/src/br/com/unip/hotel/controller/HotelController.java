@@ -19,7 +19,8 @@ public class HotelController {
 
 	@RequestMapping("selecionaHotel")
 	public String buscar(Hotel hotel, Model model) {
-
+		
+		// apenas para visualizar no console
 		String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataEntrada().getTime());
 		String dataFormatada1 = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataSaida().getTime());
 
@@ -30,16 +31,18 @@ public class HotelController {
 
 		long dias = horas / -24;
 		hotel.setQtdDias(dias);
-		hotel.setValorDiaria(150);
-		hotel.setValorTotal(hotel.getQtdDias() * hotel.getValorDiaria());
+
+		hotel.setValorTotal(hotel.getQtdDias() * (hotel.getValorDiaria()*hotel.getTipoQuarto()));
 
 		System.out.println("Quantidade de dias " + hotel.getQtdDias());
 		System.out.println("Entrada: " + dataFormatada + " Saida: " + dataFormatada1 + " Valor diária: "
-				+ hotel.getValorDiaria() + " "+ hotel.getTipoQuarto());
+				+ hotel.getValorDiaria() + " " + hotel.getTipoQuarto());
 		System.out.println(dias * hotel.getValorDiaria());
 
 		model.addAttribute("hotel", hotel);
-		return "hotel/resultado";
+		return "hotel/index";
 	}
+
+	
 	
 }

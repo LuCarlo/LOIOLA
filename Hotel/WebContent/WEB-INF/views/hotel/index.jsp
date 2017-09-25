@@ -16,15 +16,15 @@
 <title>HoteisUNIP.com</title>
 </head>
 <body>
-	<form method="get" action="selecionaHotel">
+	<form method="post" action="selecionaHotel">
 		<div style="text-align: center">
 			<h2>Busca de Hotel</h2>
 		</div>
 
 		<div>
-		<input type="hidden" name="valorDiaria" value="150" />
+	<!-- 	<input type="hidden" name="valorDiaria"  />
 		<input type="hidden" name="qtdDias" value="6"/>
-			<table border="1">
+	 -->		<table border="1">
 				<tr>
 					<td>Data de Entrada: <tag:campoData id="dataEntrada" /> <br />
 					</td>
@@ -33,16 +33,48 @@
 				</tr>
 			</table>
 			<br />Tipo de quarto: <select name="tipoQuarto">
-				<option value="Quarto Individual">Quarto Individual</option>
-				<option value="Quarto Duplo">Quarto Duplo</option>
-				<option value="Quarto Familia">Quarto Familia</option>
-				<option value="Quarto Múltiplo">Quarto Múltiplo</option>
+				<option value="1">Quarto Individual</option>
+				<option value="2">Quarto Duplo</option>
+				<option value="3">Quarto Família</option>
+				<option value="4">Quarto Múltiplo</option>
 
 			</select> <br /> <br /> 
 		</div>
 		
 		<input type="submit" value="Pesquisar" />
 	</form>
+	
+	<h3>Resultado da busca por hoteis!!</h3>
+	
+	<table border="1">	
+	<tr>	
+	<td><b>Data Entrada:</b> ${param.dataEntrada}</td>
+	<td><b>Data Saida:</b> ${param.dataSaida }</td>
+	</tr>
 
+	<tr>	
+	<td><b>Quantidade de Diárias:</b> ${hotel.qtdDias}</td>
+	<td><b>Tipo do Quarto:</b> <c:if test="${hotel.tipoQuarto == 1}">      
+      Quarto Individual
+   </c:if>
+   
+   <c:if test="${hotel.tipoQuarto == 2}">      
+      Quarto Duplo
+   </c:if>
+   
+   <c:if test="${hotel.tipoQuarto == 3}">      
+      Quarto Família
+   </c:if>
+   
+   <c:if test="${hotel.tipoQuarto == 4}">      
+      Quarto Múltiplo
+   </c:if>
+   
+   </td>
+	<td><b>Valor da Diária:</b> ${hotel.valorDiaria}</td>
+	<td><b>Valor Total:</b> ${hotel.valorTotal}</td>
+	</tr>
+	</table>
+	<font color="red">*Obs: O valor de diária é fixo. O valor total pode variar de acordo com o tipo de quarto selecionado.</font>
 </body>
 </html>
