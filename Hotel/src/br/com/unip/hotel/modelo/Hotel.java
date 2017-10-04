@@ -5,7 +5,7 @@ import java.util.Calendar;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Hotel {
-	private String nome;
+	private String nome = "Hotel Pacheco";
 	private int tipoQuarto;
 	private double valorDiaria = 150;
 	@DateTimeFormat(pattern="dd/MM/yyyy")

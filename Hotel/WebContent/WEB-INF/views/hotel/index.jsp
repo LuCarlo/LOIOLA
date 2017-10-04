@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <%@	taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib tagdir="/WEB-INF/tags" prefix="tag"%>
 
 <link href="css/jquery.css" rel="stylesheet" />
@@ -41,15 +42,17 @@
 			</select> <br /> <br /> 
 		</div>
 		
-		<input type="submit" value="Pesquisar" />
+		<input type="submit" value="Reservar" />
 	</form>
 	
-	<h3>Resultado da busca por hoteis!!</h3>
+	<h3>Dados da Reserva!!</h3>
 	
 	<table border="1">	
 	<tr>	
-	<td><b>Data Entrada:</b> ${param.dataEntrada}</td>
-	<td><b>Data Saida:</b> ${param.dataSaida }</td>
+	<td><b>Data Entrada:</b> <fmt:formatDate value="${hotel.dataEntrada.time}"
+pattern="dd/MM/yyyy" /></td>
+	<td><b>Data Saida:</b> <fmt:formatDate value="${hotel.dataSaida.time }"
+pattern="dd/MM/yyyy" /></td>
 	</tr>
 
 	<tr>	

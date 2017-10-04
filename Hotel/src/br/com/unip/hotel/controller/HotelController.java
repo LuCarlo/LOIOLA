@@ -1,16 +1,20 @@
 package br.com.unip.hotel.controller;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.unip.hotel.dao.HotelDao;
 import br.com.unip.hotel.modelo.Hotel;
 
 @Controller
 public class HotelController {
 
+	String dataFormatada;
+	String dataFormatada1;
 	@RequestMapping("novaBusca")
 	public String form() {
 		System.out.println("nem entrei aqui");
@@ -39,6 +43,14 @@ public class HotelController {
 				+ hotel.getValorDiaria() + " " + hotel.getTipoQuarto());
 		System.out.println(dias * hotel.getValorDiaria());
 
+		HotelDao dao = new HotelDao ();
+		dao.adiciona(hotel);
+		try{
+		dao.adiciona_reservas(hotel);}
+		catch(SQLException e ){
+			e.printStackTrace();
+		}
+		
 		model.addAttribute("hotel", hotel);
 		return "hotel/index";
 	}
