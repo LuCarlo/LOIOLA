@@ -54,6 +54,14 @@ public class HotelController {
 		model.addAttribute("hotel", hotel);
 		return "hotel/index";
 	}
+	
+	@RequestMapping("listaHotel")
+	public String lista(Model model){
+		HotelDao dao = new HotelDao();
+		model.addAttribute("hoteis", dao.getLista());
+		return "hotel/lista";
+		
+	}
 
 	
 	

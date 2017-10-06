@@ -1,6 +1,7 @@
 package br.com.unip.hotel.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,13 +26,15 @@ public class HotelDao {
 	}
 	
 	public void adiciona(Hotel hotel) {
-		String sql = "INSERT INTO hotel (" + "nome, val_diaria) "
-				+ "VALUES (?,?) ";
+		String sql = "INSERT INTO hotel (" + "nome, val_diaria, tipo_quarto) "
+				+ "VALUES (?,?,?) ";
 		try {
 			
 			PreparedStatement stmt = connection.prepareStatement(sql);
 			stmt.setString(1, hotel.getNome());
 			stmt.setDouble(2,hotel.getValorDiaria());
+			stmt.setInt(3, hotel.getTipoQuarto());
+			
 			stmt.execute();
 			
 		} catch (SQLException e) {
@@ -74,36 +77,27 @@ public class HotelDao {
 	public List<Hotel> getLista() {
 		try {
 			List<Hotel> Hoteis = new ArrayList<Hotel>();
-			PreparedStatement stmt = connection.prepareStatement("select * from hotel");
+			PreparedStatement stmt = connection.prepareStatement("SELECT * FROM hotel h JOIN reservas r ON h.id_hotel = r.id_hotel");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Hotel hotel = new Hotel();
-				hotel.setNome(rs.getString("nome"));
-				hotel.setValorDiaria(rs.getDouble("valor_diaria"));
-				Hoteis.add(hotel);
-			}
-			rs.close();
-			stmt.close();
-			return Hoteis;
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	public List<Hotel> getListaReservas() {
-		try {
-			List<Hotel> Hoteis = new ArrayList<Hotel>();
-			PreparedStatement stmt = connection.prepareStatement("select * from reservas");
-			ResultSet rs = stmt.executeQuery();
-
-			while (rs.next()) {
-				Hotel hotel = new Hotel();
+//				hotel.setNome(rs.getString("nome"));
+				hotel.setValorDiaria(rs.getDouble("val_diaria"));
+				hotel.setTipoQuarto(rs.getInt("tipo_quarto"));
+				
+				// Recuperando data de Entrada
+				Calendar dataEntrada = Calendar.getInstance();
+				dataEntrada.setTime(rs.getDate("dat_entrada"));
+				hotel.setDataEntrada(dataEntrada);
+				
+				// Recuperando data de Saida
+				Calendar dataSaida = Calendar.getInstance();
+				dataSaida.setTime(rs.getDate("dat_saida"));
+				hotel.setDataEntrada(dataSaida);
+				
 				hotel.setValorTotal(rs.getDouble("val_total"));
-
-				Calendar data = hotel.getDataEntrada().getTimeInMillis();
-				data.setTime(rs.getDate("dataNascimento"));
-				contato.setDataNascimento(data);
+				hotel.setQtdDias(rs.getLong("dias_total"));
 
 				Hoteis.add(hotel);
 			}
