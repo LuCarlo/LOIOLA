@@ -18,9 +18,10 @@
 <title>HoteisUNIP.com</title>
 </head>
 <body>
+	<font color="red"><h3>${hotel.msg}</h3></font>
 	<form method="post" action="selecionaHotel">
 		<div style="text-align: center">
-			<h2>Busca de Hotel</h2>
+			<h2>Reserva de Hotel</h2>
 		</div>
 
 		<div>
@@ -43,10 +44,15 @@
 
 			</select> <br /> <br />
 		</div>
-
 		<input type="submit" value="Reservar" />
 
 	</form>
+	
+	<br /> 	
+	<form method="post" action="listaHotel">
+		<input type="submit" value="Listar Reservas" />
+	</form>
+	
 
 	<h3>Dados da Reserva!!</h3>
 
@@ -74,60 +80,9 @@
 		</tr>
 	</table>
 	<font color="red">*Obs: O valor de diária é fixo. O valor total
-		pode variar de acordo com o tipo de quarto selecionado.</font>
-
-
-
-
-
-
-	<form method="post" action="listaHotel">
-
-		<div
-			style="width: 1300px; height: 86px; margin-top: 35px; margin-left: 45px;">
-
-			<table class="striped">
-				<tr>
-					<th></th>
-					<th>ID</th>
-					<th>FORNECEDOR</th>
-					<th>CNPJ</th>
-					<th>ENDEREÇO</th>
-					<th>CELULAR</th>
-					<th>TELEFONE</th>
-					<th>TELEFONE COMERCIAL</th>
-					<th>EXCLUIR</th>
-				</tr>
-				<c:forEach items="${hoteis}" var="hotel">
-					<tr>
-						<td>${hoteis.nome}</td>
-						<td><b>Tipo do Quarto:</b> <c:if
-								test="${hoteis.tipoQuarto == 1}">      
-      Quarto Individual
-   </c:if> <c:if test="${hoteis.tipoQuarto == 2}">      
-      Quarto Duplo
-   </c:if> <c:if test="${hoteis.tipoQuarto == 3}">      
-      Quarto Família
-   </c:if> <c:if test="${hoteis.tipoQuarto == 4}">      
-      Quarto Múltiplo
-   </c:if></td>
-						<td>${hoteis.valorDiaria}</td>
-						<td><b>Data Entrada:</b> <fmt:formatDate
-								value="${hoteis.dataEntrada.time}" pattern="dd/MM/yyyy" /></td>
-						<td><b>Data Saida:</b> <fmt:formatDate
-								value="${hoteis.dataSaida.time }" pattern="dd/MM/yyyy" /></td>
-					</tr>
-					<td>${hoteis.valorTotal}</td>
-					<td>${hoteis.qtdDias}</td>
-
-
-				</c:forEach>
-			</table>
-		</div>
-		<input type="submit" value="Listar Reservas" />
-	</form>
-
-
+		pode variar de acordo com o tipo de quarto selecionado.
+		<p>- Somente será possivel agendar um quarto por tipo.</p>
+		</font>
 
 
 </body>

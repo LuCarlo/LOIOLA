@@ -20,12 +20,14 @@ public class TestaLista {
 			System.out.println("Email: " + hotel.getQtdDias());
 			System.out.println("Endereço: " + hotel.getTipoQuarto());
 			System.out.println("Endereço: " + hotel.getValorDiaria());
+			
+			System.out.println("Data Entrada: " +
+			hotel.getDataEntrada().getTime() + "\n");
+			
 			System.out.println("Endereço: " + hotel.getValorTotal());
-//			System.out.println("Data de Nascimento1: " +
-//			hotel.getDataEntrada().getTime() + "\n");
-//			
-//			System.out.println("Data de Nascimento2: " +
-//			hotel.getDataSaida().getTime() + "\n");
+			
+			System.out.println("Data Saida: " +
+			hotel.getDataSaida().getTime() + "\n");
 			}
 	}
 

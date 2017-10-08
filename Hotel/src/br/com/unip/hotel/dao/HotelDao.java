@@ -1,7 +1,6 @@
 package br.com.unip.hotel.dao;
 
 import java.sql.Connection;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,6 +82,8 @@ public class HotelDao {
 			while (rs.next()) {
 				Hotel hotel = new Hotel();
 //				hotel.setNome(rs.getString("nome"));
+				hotel.setId_hotel(rs.getInt("id_hotel"));
+				hotel.setId_reserva(rs.getInt("id_reserva"));
 				hotel.setValorDiaria(rs.getDouble("val_diaria"));
 				hotel.setTipoQuarto(rs.getInt("tipo_quarto"));
 				
@@ -94,7 +95,7 @@ public class HotelDao {
 				// Recuperando data de Saida
 				Calendar dataSaida = Calendar.getInstance();
 				dataSaida.setTime(rs.getDate("dat_saida"));
-				hotel.setDataEntrada(dataSaida);
+				hotel.setDataSaida(dataSaida);
 				
 				hotel.setValorTotal(rs.getDouble("val_total"));
 				hotel.setQtdDias(rs.getLong("dias_total"));
@@ -109,5 +110,41 @@ public class HotelDao {
 		}
 	}
 
+	public void remove(Hotel hotel) {
+		String sql = "delete from reservas where id_reserva=?";
+		String sqlh = "delete from hotel where id_hotel=?";
+		
+		try {
+			PreparedStatement stmth = connection.prepareStatement(sqlh);
+			stmth.setLong(1, hotel.getId_hotel());
+			
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			stmt.setLong(1, hotel.getId_reserva());
+ 
+			stmth.execute();
+			stmt.execute();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
 	
+	public boolean verificaRegistroExistente(Hotel hotel) {
+        String sql = " SELECT * FROM hotel WHERE tipo_quarto =? ";
+        boolean retorno = false;
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            stmt.setInt(1, hotel.getTipoQuarto());
+
+            ResultSet rs = stmt.executeQuery();
+            retorno = rs.next();            
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println("ERRO SQL " + e);
+        }
+
+        return retorno;
+    }
 }
