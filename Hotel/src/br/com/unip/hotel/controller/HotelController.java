@@ -51,6 +51,7 @@ public class HotelController {
 		
 		// verifica se o tipo de quarto ja esta reservado, se não, permite a nova reserva e grava dados no banco.
 		HotelDao dao = new HotelDao ();
+		
 		if(dao.verificaRegistroExistente(hotel) == false){
 		dao.adiciona(hotel);
 		try{

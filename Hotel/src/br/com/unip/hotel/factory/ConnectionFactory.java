@@ -9,8 +9,8 @@ public class ConnectionFactory {
 	public Connection getConnection() throws SQLException {
 		String driver = "org.postgresql.Driver";
 		String usuario = "postgres";
-		String senha = "";
-		String url = "jdbc:postgresql://localhost:5433/hotel";
+		String senha = "juizladrao";
+		String url = "jdbc:postgresql://10.1.1.255:5433/hotel";
 
 		System.out.println("Conectando...");
 		try {

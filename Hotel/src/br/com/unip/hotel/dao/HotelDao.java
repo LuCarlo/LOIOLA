@@ -131,6 +131,7 @@ public class HotelDao {
 	
 	public boolean verificaRegistroExistente(Hotel hotel) {
         String sql = " SELECT * FROM hotel WHERE tipo_quarto =? ";
+//        String sql1 = "SELECT tipo_quarto, COUNT(tipo_quarto) AS Quantidade FROM hotel GROUP BY tipo_quarto  ";
         boolean retorno = false;
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
