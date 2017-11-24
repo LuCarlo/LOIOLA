@@ -7,9 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Hotel {
 	private int id_hotel;
 	private int id_reserva;
-	private String nome = "Hotel Pacheco";
+	private String nome ;
 	private int tipoQuarto;
-	private double valorDiaria = 150;
+	private double valorDiaria ;
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private Calendar dataEntrada;
 	@DateTimeFormat(pattern="dd/MM/yyyy")

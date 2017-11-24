@@ -1,8 +1,6 @@
 package br.com.unip.hotel.controller;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,8 +15,9 @@ public class HotelController {
 	String dataFormatada;
 	String dataFormatada1;
 	@RequestMapping("novaBusca")
-	public String form() {
-		System.out.println("nem entrei aqui");
+	public String novaBusca(Model model) {
+		HotelDao dao = new HotelDao();
+		model.addAttribute("quartos", dao.verificarQuantidadeQuartoDisponivel());
 		return "hotel/index";
 	}
 
@@ -26,8 +25,8 @@ public class HotelController {
 	public String buscar(Hotel hotel, Model model, BindingResult result) {
 		
 		// apenas para visualizar no console
-		String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataEntrada().getTime());
-		String dataFormatada1 = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataSaida().getTime());
+//		String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataEntrada().getTime());
+//		String dataFormatada1 = new SimpleDateFormat("dd/MM/yyyy").format(hotel.getDataSaida().getTime());
 		//----------------------------------------------------------------------------------------------------
 		
 		// Calcula a quantidade de dias compreendida na data selecionada na reserva e seta valores no objeto
@@ -52,21 +51,24 @@ public class HotelController {
 		// verifica se o tipo de quarto ja esta reservado, se não, permite a nova reserva e grava dados no banco.
 		HotelDao dao = new HotelDao ();
 		
-		if(dao.verificaRegistroExistente(hotel) == false){
-		dao.adiciona(hotel);
+		if(dao.verificarLimiteDeReservas(hotel) == false){
 		try{
 		dao.adiciona_reservas(hotel);}
 		catch(SQLException e ){
 			e.printStackTrace();
 			}
 		}else{
-			hotel.setMsg("Não foi possivel reservar este tipo de quarto! Talvez você já tenha reservado em um outro momento"); 
+			System.out.println("Já existe reserva");
+			hotel.setMsg("Não foi possivel reservar este quarto! Limite de reservas excedido!");
+			model.addAttribute("hotel", hotel);
+			model.addAttribute("quartos", dao.verificarQuantidadeQuartoDisponivel());
+			return "hotel/index";
 		}
 		//------------------------------------------------------------------------------------------------------
 		
 		model.addAttribute("hotel", hotel);
 		
-		return "hotel/index";
+		return "redirect:listaHotel";
 	}
 	
 	@RequestMapping("listaHotel")

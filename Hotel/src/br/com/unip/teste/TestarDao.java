@@ -1,6 +1,5 @@
 package br.com.unip.teste;
 
-import br.com.unip.hotel.dao.HotelDao;
 import br.com.unip.hotel.modelo.Hotel;
 
 public class TestarDao {
@@ -11,8 +10,8 @@ public class TestarDao {
 		h.setNome("Hotel Erivaldo");
 		h.setValorDiaria(150);
 
-		HotelDao dao = new HotelDao();
-		dao.adiciona(h);
+//		HotelDao dao = new HotelDao();
+//		dao.adiciona(h);
 		
 		System.out.println("Conectado");
 

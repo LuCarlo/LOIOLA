@@ -19,32 +19,30 @@
 <body>
 
 	<div>
-		<a href="novaBusca">Realizar nova reserva</a>
+		<a href="novaBusca">Reservar novamente</a>
 	</div>
+	<h3>Lista de reservas</h3>
 
-	<form method="post" action="listaHotel">
+	<div
+		style="width: 1300px; height: 86px; margin-top: 35px; margin-left: 45px;">
 
-		<div
-			style="width: 1300px; height: 86px; margin-top: 35px; margin-left: 45px;">
-
-			<table border=1;>
+		<table border="5">
+			<tr>
+				<th>Nº da Reserva</th>
+				<th>Hotel</th>
+				<th>Tipo do Quarto</th>
+				<th>Valor Diaria</th>
+				<th>Data Entrada</th>
+				<th>Data Saida</th>
+				<th>Valor Total</th>
+				<th>Quantidade de Dias</th>
+				<th>EXCLUIR</th>
+			</tr>
+			<c:forEach items="${hoteis}" var="hotel">
 				<tr>
-					<th>Nº da Reserva</th>
-					<th>Hotel</th>
-					<th>Tipo do Quarto</th>
-					<th>Valor Diaria</th>
-					<th>Data Entrada</th>
-					<th>Data Saida</th>
-					<th>Valor Total</th>
-					<th>Quantidade de Dias</th>
-					<th>EXCLUIR</th> 
-				</tr>
-				<c:forEach items="${hoteis}" var="hotel">
-					<tr>
-						<td>${hotel.id_reserva}</td>
-						<td>${hotel.nome}</td>
-						<td><c:if
-								test="${hotel.tipoQuarto == 1}">       
+					<td>${hotel.id_reserva}</td>
+					<td>${hotel.nome}</td>
+					<td><c:if test="${hotel.tipoQuarto == 1}">       
      						 Quarto Individual 
  							</c:if> <c:if test="${hotel.tipoQuarto == 2}">      
       						Quarto Duplo 
@@ -53,20 +51,21 @@
    							</c:if> <c:if test="${hotel.tipoQuarto == 4}">      
       						Quarto Múltiplo 
    							</c:if></td>
-						<td>${hotel.valorDiaria}</td>
-						<td><fmt:formatDate value="${hotel.dataEntrada.time}"
-								pattern="dd/MM/yyyy" /></td>
-						<td><fmt:formatDate value="${hotel.dataSaida.time}"
-								pattern="dd/MM/yyyy" /></td>
-						<td>${hotel.valorTotal}</td>
-						<td>${hotel.qtdDias}</td>
-						<td><a href="removeHotel?id_reserva=${hotel.id_reserva}&id_hotel=${hotel.id_hotel}" >Remover</a></td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
+					<td>${hotel.valorDiaria}</td>
+					<td><fmt:formatDate value="${hotel.dataEntrada.time}"
+							pattern="dd/MM/yyyy" /></td>
+					<td><fmt:formatDate value="${hotel.dataSaida.time}"
+							pattern="dd/MM/yyyy" /></td>
+					<td>${hotel.valorTotal}</td>
+					<td>${hotel.qtdDias}</td>
+					<td><a
+						href="removeHotel?id_reserva=${hotel.id_reserva}&id_hotel=${hotel.id_hotel}">Remover</a></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 
-	</form>
+
 
 
 
