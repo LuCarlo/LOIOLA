@@ -1,10 +1,15 @@
 package br.com.unip.hotel.controller;
 
 import java.sql.SQLException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import br.com.unip.hotel.dao.HotelDao;
 import br.com.unip.hotel.modelo.Hotel;
@@ -86,6 +91,14 @@ public class HotelController {
 	return "redirect:listaHotel";
 	}
 
-	
+	@RequestMapping("upload")
+	public String upload(HttpServletRequest request) {
+		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+		MultipartFile multipartFile = multipartRequest.getFile("file");
+		System.out.println(multipartFile.getName());
+		return "redirect:upload-success";
+	}
+		
+
 	
 }

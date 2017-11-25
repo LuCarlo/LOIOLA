@@ -4,6 +4,9 @@ import java.util.Calendar;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
+@XStreamAlias("Hotel")
 public class Hotel {
 	private int id_hotel;
 	private int id_reserva;

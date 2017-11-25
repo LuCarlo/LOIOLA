@@ -1,0 +1,19 @@
+<list>
+  <br.com.unip.hotel.modelo.Hotel>
+    <id__hotel>1</id__hotel>
+    <id__reserva>5</id__reserva>
+    <nome>Hotel Pacheco</nome>
+    <tipoQuarto>1</tipoQuarto>
+    <valorDiaria>100.0</valorDiaria>
+    <dataEntrada>
+      <time>1509501600000</time>
+      <timezone>America/Sao_Paulo</timezone>
+    </dataEntrada>
+    <dataSaida>
+      <time>1509674400000</time>
+      <timezone>America/Sao_Paulo</timezone>
+    </dataSaida>
+    <valorTotal>200.0</valorTotal>
+    <qtdDias>2</qtdDias>
+  </br.com.unip.hotel.modelo.Hotel>
+</list>

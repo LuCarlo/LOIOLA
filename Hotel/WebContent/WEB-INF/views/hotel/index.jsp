@@ -78,7 +78,11 @@
 		<input type="submit" value="Listar Reservas" />
 	</form>
 
-
+	<form method="post" enctype="multipart/form-data" action="upload">
+		<br />
+		<br /> <input type="file" name="file" /> <br /> <br /> 
+		<input type="submit" value="Upload" />
+	</form>
 
 
 

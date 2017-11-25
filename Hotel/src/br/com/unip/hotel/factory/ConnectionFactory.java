@@ -10,7 +10,7 @@ public class ConnectionFactory {
 		String driver = "org.postgresql.Driver";
 		String usuario = "postgres";
 		String senha = "juizladrao";
-		String url = "jdbc:postgresql://localhost/hotel";
+		String url = "jdbc:postgresql://localhost:5433/hotel";
 
 		System.out.println("Conectando...");
 		try {

@@ -1,0 +1,13 @@
+<hotel>
+  <hotel>
+    <tipoQuarto>1</tipoQuarto>
+    <dataEntrada>
+      <time>1509501600000</time>
+      <timezone>America/Sao_Paulo</timezone>
+    </dataEntrada>
+    <dataSaida>
+      <time>1509674400000</time>
+      <timezone>America/Sao_Paulo</timezone>
+    </dataSaida>
+  </hotel>
+</hotel>

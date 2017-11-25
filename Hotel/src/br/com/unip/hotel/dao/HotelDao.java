@@ -49,7 +49,7 @@ public class HotelDao {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
 	public List<Hotel> getLista() {
 		try {
 			List<Hotel> Hoteis = new ArrayList<Hotel>();
