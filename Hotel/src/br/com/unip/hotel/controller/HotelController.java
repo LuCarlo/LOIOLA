@@ -100,13 +100,14 @@ public class HotelController {
 	public String upload(HttpServletRequest request){
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile = multipartRequest.getFile("file");
-		
-		String xml = multipartFile.toString();
+
+
 		try {
 //			File file = new File();
 //			file.createNewFile();
 //			FileOutputStream out = new FileOutputStream(file);
 			
+			String xml = "";
 			
 			FileReader ler = new FileReader(xml);
 			XStream xstream = new XStream(new DomDriver());
