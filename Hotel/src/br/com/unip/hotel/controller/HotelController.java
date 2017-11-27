@@ -1,7 +1,10 @@
 package br.com.unip.hotel.controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -97,29 +100,41 @@ public class HotelController {
 	}
 
 	@RequestMapping("upload")
-	public String upload(HttpServletRequest request){
+	public String upload(HttpServletRequest request) throws IOException, SQLException{
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile = multipartRequest.getFile("file");
 
-
 		try {
 			
-			String xml = "";
+			byte [] bytes = multipartFile.getBytes();
+			File xml = new File("xml");
+			FileOutputStream fos = null;
 			
+			fos = new FileOutputStream(xml);
+			fos.write(bytes);
+           
+
 			FileReader ler = new FileReader(xml);
 			XStream xstream = new XStream(new DomDriver());
 			Hotel hotel = (Hotel) xstream.fromXML(ler);
 		
-			System.out.println(ler );
+			System.out.println(bytes );
 			System.out.println("Tipo de quarto: "+hotel.getTipoQuarto());
 			
+			HotelDao dao = new HotelDao();
+			dao.adiciona_reservas(hotel);
+			
+			System.out.println("arquivo: "+ fos);
+			fos.close();
+			
 		} catch (FileNotFoundException e ) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		// Commit do metodo de leitura do xml.
+		
 		System.out.println(multipartFile.getName());
-		return "redirect:upload-success";
+		return "redirect:listaHotel";
 	}
 		
 
