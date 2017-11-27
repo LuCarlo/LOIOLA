@@ -103,9 +103,6 @@ public class HotelController {
 
 
 		try {
-//			File file = new File();
-//			file.createNewFile();
-//			FileOutputStream out = new FileOutputStream(file);
 			
 			String xml = "";
 			
@@ -117,11 +114,10 @@ public class HotelController {
 			System.out.println("Tipo de quarto: "+hotel.getTipoQuarto());
 			
 		} catch (FileNotFoundException e ) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
+		// Commit do metodo de leitura do xml.
 		System.out.println(multipartFile.getName());
 		return "redirect:upload-success";
 	}
