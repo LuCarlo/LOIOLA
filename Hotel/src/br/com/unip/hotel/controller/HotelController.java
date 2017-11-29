@@ -100,7 +100,7 @@ public class HotelController {
 	}
 
 	@RequestMapping("upload")
-	public String upload(HttpServletRequest request) throws IOException, SQLException{
+	public String upload(HttpServletRequest request, Model model) throws IOException, SQLException{
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		MultipartFile multipartFile = multipartRequest.getFile("file");
 
@@ -122,10 +122,23 @@ public class HotelController {
 			System.out.println("Tipo de quarto: "+hotel.getTipoQuarto());
 			
 			HotelDao dao = new HotelDao();
-			dao.adiciona_reservas(hotel);
+			if(dao.verificarLimiteDeReservas(hotel) == false){
+				try{
+				dao.adiciona_reservas(hotel);}
+				catch(SQLException e ){
+					e.printStackTrace();
+					}
+				}else{
+					System.out.println("Já existe reserva");
+					hotel.setMsg("Não foi possivel reservar este quarto! Limite de reservas excedido!");
+					model.addAttribute("hotel", hotel);
+					model.addAttribute("quartos", dao.verificarQuantidadeQuartoDisponivel());
+					fos.close();
+					return "hotel/index";
+				}
 			
 			System.out.println("arquivo: "+ fos);
-			fos.close();
+			
 			
 		} catch (FileNotFoundException e ) {
 			// TODO Auto-generated catch block
